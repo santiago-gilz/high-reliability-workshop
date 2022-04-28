@@ -1,0 +1,26 @@
+# Default values for todos-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+restartPolicy: Always
+
+env:
+  JWT_SECRET: myfancysecret
+  TODO_API_PORT: "8082"
+  REDIS_HOST: redis-queue
+  REDIS_PORT: "6379"
+  REDIS_CHANNEL: log_channel
+  ZIPKIN_URL: http://zipkin:9411/api/v2/spans
+
+image:
+  repository: nginx
+  tag: stable
+  pullPolicy: IfNotPresent
+
+nameOverride: "todos-api"
+fullnameOverride: "workshop-todos-api"
+
+service:
+  type: ClusterIP
+  port: 8082

@@ -1,0 +1,24 @@
+# Default values for log-msg-processor.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+restartPolicy: Always
+
+env:
+  REDIS_HOST: redis-queue
+  REDIS_PORT: "6379"
+  REDIS_CHANNEL: log_channel
+  ZIPKIN_URL: http://zipkin:9411/api/v2/spans
+
+image:
+  repository: sgilz/workshop-log-message-processor
+  tag: latest
+  pullPolicy: IfNotPresent
+
+nameOverride: "log-message-processor"
+fullnameOverride: "workshop-log-message-processor"
+
+service:
+  type: ClusterIP
+  port: 8084

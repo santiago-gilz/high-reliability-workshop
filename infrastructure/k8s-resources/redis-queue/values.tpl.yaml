@@ -1,0 +1,21 @@
+# Default values for redis-queue.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: ${redis_replicaCount}
+restartPolicy: ${redis_restartPolicy}
+
+env:
+  ${_env_vars}
+
+image:
+  repository: ${redis_registry}
+  tag: latest
+  pullPolicy: ${redis_pull_policy}
+
+nameOverride: ${redis_short_name}
+fullnameOverride: ${redis_long_name}
+
+service:
+  type: ClusterIP
+  port: ${redis_port}

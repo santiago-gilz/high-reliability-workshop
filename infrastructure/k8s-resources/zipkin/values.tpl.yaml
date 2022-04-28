@@ -1,0 +1,34 @@
+# Default values for zipkin.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: ${zipkin_replicaCount}
+restartPolicy: ${zipkin_restartPolicy}
+
+env:
+  ${zipkin_env_vars}
+
+image:
+  repository: ${zipkin_registry}
+  tag: latest
+  pullPolicy: ${zipkin_pull_policy}
+
+nameOverride: ${zipkin_short_name}
+fullnameOverride: ${zipkin_long_name}
+
+service:
+  type: ClusterIP
+  port: ${zipkin_port}
+
+ingress:
+  enabled: ${zipkin_enable_ingress}
+  annotations:
+    kubernetes.io/ingress.class: ${zipkin_ingress_class}
+  hosts:
+    - host: ${zipkin_long_name}.local
+      paths: ["/"]
+
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local

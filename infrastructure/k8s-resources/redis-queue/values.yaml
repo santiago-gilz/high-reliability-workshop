@@ -1,0 +1,18 @@
+# Default values for redis-queue.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+restartPolicy: Always
+
+image:
+  repository: redis
+  tag: latest
+  pullPolicy: IfNotPresent
+
+nameOverride: "redis-queue"
+fullnameOverride: "workshop-redis-queue"
+
+service:
+  type: ClusterIP
+  port: 6379

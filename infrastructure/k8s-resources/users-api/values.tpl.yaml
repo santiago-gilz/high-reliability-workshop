@@ -1,0 +1,21 @@
+# Default values for users-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: ${users_api_replicaCount}
+restartPolicy: ${users_api_restartPolicy}
+
+env:
+  ${users_api_env_vars}
+
+image:
+  repository: ${users_api_registry}
+  tag: latest
+  pullPolicy: ${users_api_pull_policy}
+
+nameOverride: ${users_api_short_name}
+fullnameOverride: ${users_api_long_name}
+
+service:
+  type: ClusterIP
+  port: ${users_api_port}

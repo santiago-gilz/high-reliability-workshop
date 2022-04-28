@@ -1,0 +1,21 @@
+# Default values for log_msg_proc.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: ${log_msg_proc_replicaCount}
+restartPolicy: ${log_msg_proc_restartPolicy}
+
+env:
+  ${log_msg_proc_env_vars}
+
+image:
+  repository: ${log_msg_proc_registry}
+  tag: latest
+  pullPolicy: ${log_msg_proc_pull_policy}
+
+nameOverride: ${log_msg_proc_short_name}
+fullnameOverride: ${log_msg_proc_long_name}
+
+service:
+  type: ClusterIP
+  port: ${log_msg_proc_port}
