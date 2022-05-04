@@ -6,7 +6,7 @@ replicaCount: ${redis_replicaCount}
 restartPolicy: ${redis_restartPolicy}
 
 env:
-  ${_env_vars}
+  ${redis_env_vars}
 
 image:
   repository: ${redis_registry}
