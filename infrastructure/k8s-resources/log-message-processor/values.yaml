@@ -12,13 +12,9 @@ env:
   ZIPKIN_URL: http://zipkin:9411/api/v2/spans
 
 image:
-  repository: sgilz/workshop-log-message-processor
+  repository: sgilz/col40-log-message-processor
   tag: latest
   pullPolicy: IfNotPresent
 
 nameOverride: "log-message-processor"
 fullnameOverride: "workshop-log-message-processor"
-
-service:
-  type: ClusterIP
-  port: 8084

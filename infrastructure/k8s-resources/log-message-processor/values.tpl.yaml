@@ -15,7 +15,3 @@ image:
 
 nameOverride: ${log_msg_proc_short_name}
 fullnameOverride: ${log_msg_proc_long_name}
-
-service:
-  type: ClusterIP
-  port: ${log_msg_proc_port}
