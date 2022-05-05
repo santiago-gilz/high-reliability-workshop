@@ -12,4 +12,4 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      az login --identity
+      terraform -version
