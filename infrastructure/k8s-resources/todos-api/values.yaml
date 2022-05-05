@@ -14,8 +14,8 @@ env:
   ZIPKIN_URL: http://zipkin:9411/api/v2/spans
 
 image:
-  repository: nginx
-  tag: stable
+  repository: sgilz/col40-todos-api
+  tag: latest
   pullPolicy: IfNotPresent
 
 nameOverride: "todos-api"

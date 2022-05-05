@@ -36,10 +36,10 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /users
               port: http
           readinessProbe:
             httpGet:
-              path: /
+              path: /users
               port: http
       restartPolicy: {{ .Values.restartPolicy }}
