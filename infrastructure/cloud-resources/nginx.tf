@@ -4,4 +4,22 @@ resource "helm_release" "nginx_ingress" {
   repository = "https://helm.nginx.com/stable"
   chart      = "nginx-ingress"
   depends_on = [azurerm_kubernetes_cluster.aks]
+  namespace  = "kube-system"
+
+  wait = true
+
+  set {
+    name  = "controller.publishService.enabled"
+    value = "true"
+  }
+
+  set {
+    name  = "controller.metrics.enabled"
+    value = "true"
+  }
+
+  set {
+    name  = "controller.stats.enabled"
+    value = "true"
+  }
 }

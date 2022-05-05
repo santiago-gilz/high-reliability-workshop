@@ -19,6 +19,7 @@ variable "namespace_name" {
 
 variable "redis_release_name" {
   type = string
+  default = "redis-queue"
 }
 
 

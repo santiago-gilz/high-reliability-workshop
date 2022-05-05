@@ -35,11 +35,9 @@ spec:
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /
-              port: http
+            exec:
+            command: ["redis-cli", "ping"]
           readinessProbe:
-            httpGet:
-              path: /
-              port: http
+            exec:
+            command: ["redis-cli", "ping"]
       restartPolicy: {{ .Values.restartPolicy }}
