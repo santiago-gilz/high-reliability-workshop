@@ -45,8 +45,6 @@ resource "helm_release" "zipkin" {
         zipkin_short_name     = var.zipkin_short_name
         zipkin_long_name      = var.zipkin_long_name
         zipkin_port           = var.zipkin_port
-        zipkin_enable_ingress = var.zipkin_enable_ingress
-        zipkin_ingress_class  = var.ingress_class
   })]
 }
 

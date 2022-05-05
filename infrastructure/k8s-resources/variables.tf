@@ -109,11 +109,6 @@ variable "zipkin_port" {
   default = "9411"
 }
 
-variable "zipkin_enable_ingress" {
-  type    = bool
-  default = false
-}
-
 ###
 # Log msg proc variables
 ###

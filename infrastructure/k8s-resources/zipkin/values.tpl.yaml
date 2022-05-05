@@ -19,16 +19,3 @@ fullnameOverride: ${zipkin_long_name}
 service:
   type: ClusterIP
   port: ${zipkin_port}
-
-ingress:
-  enabled: ${zipkin_enable_ingress}
-  annotations:
-    kubernetes.io/ingress.class: ${zipkin_ingress_class}
-  hosts:
-    - host: ${zipkin_long_name}.local
-      paths: ["/"]
-
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
