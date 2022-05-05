@@ -2,12 +2,6 @@ locals {
   # ENV Variables
   redis_env_vars  = {}
   zipkin_env_vars = {}
-  log_msg_proc_env_vars = {
-    REDIS_HOST    = var.redis_long_name
-    REDIS_PORT    = var.redis_port
-    REDIS_CHANNEL = "log_channel"
-    ZIPKIN_URL    = "http://${var.zipkin_long_name}:${var.zipkin_port}/api/v2/spans"
-  }
 }
 
 resource "helm_release" "redis-queue" {
@@ -37,14 +31,14 @@ resource "helm_release" "zipkin" {
   values = [
     templatefile("${path.module}/zipkin/values.tpl.yaml",
       {
-        zipkin_replicaCount   = var.zipkin_replicaCount
-        zipkin_restartPolicy  = var.zipkin_restartPolicy
-        zipkin_env_vars       = indent(2, yamlencode(local.zipkin_env_vars))
-        zipkin_registry       = var.zipkin_registry
-        zipkin_pull_policy    = var.zipkin_pull_policy
-        zipkin_short_name     = var.zipkin_short_name
-        zipkin_long_name      = var.zipkin_long_name
-        zipkin_port           = var.zipkin_port
+        zipkin_replicaCount  = var.zipkin_replicaCount
+        zipkin_restartPolicy = var.zipkin_restartPolicy
+        zipkin_env_vars      = indent(2, yamlencode(local.zipkin_env_vars))
+        zipkin_registry      = var.zipkin_registry
+        zipkin_pull_policy   = var.zipkin_pull_policy
+        zipkin_short_name    = var.zipkin_short_name
+        zipkin_long_name     = var.zipkin_long_name
+        zipkin_port          = var.zipkin_port
   })]
 }
 
@@ -58,10 +52,15 @@ resource "helm_release" "log_msg_proc" {
       {
         log_msg_proc_replicaCount  = var.log_msg_proc_replicaCount
         log_msg_proc_restartPolicy = var.log_msg_proc_restartPolicy
-        log_msg_proc_env_vars      = indent(2, yamlencode(local.log_msg_proc_env_vars))
-        log_msg_proc_registry      = var.log_msg_proc_registry
-        log_msg_proc_pull_policy   = var.log_msg_proc_pull_policy
-        log_msg_proc_short_name    = var.log_msg_proc_short_name
-        log_msg_proc_long_name     = var.log_msg_proc_long_name
+
+        #ENV
+        REDIS_HOST = var.redis_long_name
+        REDIS_PORT = var.redis_port
+        ZIPKIN_URL = "http://${var.zipkin_long_name}:${var.zipkin_port}/api/v2/spans"
+
+        log_msg_proc_registry    = var.log_msg_proc_registry
+        log_msg_proc_pull_policy = var.log_msg_proc_pull_policy
+        log_msg_proc_short_name  = var.log_msg_proc_short_name
+        log_msg_proc_long_name   = var.log_msg_proc_long_name
   })]
 }

@@ -6,7 +6,10 @@ replicaCount: ${log_msg_proc_replicaCount}
 restartPolicy: ${log_msg_proc_restartPolicy}
 
 env:
-  ${log_msg_proc_env_vars}
+  REDIS_HOST: ${REDIS_HOST}
+  REDIS_PORT: ${REDIS_PORT}
+  REDIS_CHANNEL: log_channel
+  ZIPKIN_URL: ${ZIPKIN_URL}
 
 image:
   repository: ${log_msg_proc_registry}

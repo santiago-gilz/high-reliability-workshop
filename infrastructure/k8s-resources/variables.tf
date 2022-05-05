@@ -72,7 +72,7 @@ variable "redis_port" {
 
 variable "zipkin_release_name" {
   type    = string
-  default = "redis-queue"
+  default = "zipkin"
 }
 variable "zipkin_replicaCount" {
   type    = number
