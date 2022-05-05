@@ -1,25 +1,17 @@
 resource "helm_release" "nginx_ingress" {
   name = "nginx-ingress-controller"
 
-  repository = "https://helm.nginx.com/stable"
-  chart      = "nginx-ingress"
+  repository = "https://kubernetes.github.io/ingress-nginx"
+  chart      = "ingress-nginx"
   depends_on = [azurerm_kubernetes_cluster.aks]
   namespace  = "kube-system"
+  version    = "4.0.13"
 
   wait = true
 
   set {
-    name  = "controller.publishService.enabled"
-    value = "true"
+    name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-load-balancer-health-probe-request-path"
+    value = "/healthz"
   }
 
-  set {
-    name  = "controller.metrics.enabled"
-    value = "true"
-  }
-
-  set {
-    name  = "controller.stats.enabled"
-    value = "true"
-  }
 }

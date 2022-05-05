@@ -34,12 +34,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "build-ss" {
     public_key = file("~/.ssh/build-ss.pub")
   }
 
-  source_image_reference {
-    publisher = "Canonical"
-    offer     = "0001-com-ubuntu-server-focal"
-    sku       = "20_04-lts-gen2"
-    version   = "latest"
-  }
+  source_image_id = "/subscriptions/19d9fdcf-da26-4de4-a421-af41f060950c/resourceGroups/image-rg/providers/Microsoft.Compute/galleries/compute_gallery/images/build-image/versions/0.0.1"
 
   os_disk {
     storage_account_type = "Standard_LRS"
@@ -55,5 +50,9 @@ resource "azurerm_linux_virtual_machine_scale_set" "build-ss" {
       primary   = true
       subnet_id = azurerm_subnet.internal.id
     }
+  }
+
+  lifecycle {
+    ignore_changes = [tags, automatic_os_upgrade_policy, overprovision, single_placement_group]
   }
 }
