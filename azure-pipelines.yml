@@ -1,8 +1,7 @@
 trigger:
 - solution
 
-pool:
-  agent: build-scale-set
+pool: build-scale-set
 
 variables:
   buildConfiguration: 'Release'
