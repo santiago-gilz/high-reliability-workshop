@@ -10,12 +10,12 @@ locals {
   }
   users_api_env_vars = {
     SERVER_PORT            = var.users_api_port
-    JWT_SECRET             = myfancysecret
+    JWT_SECRET             = "myfancysecret"
     SPRING_ZIPKIN_BASE_URL = "http://${var.zipkin_long_name}:${var.zipkin_port}"
   }
   todos_api_env_vars = {
     TODO_API_PORT = var.todos_api_port
-    JWT_SECRET    = myfancysecret
+    JWT_SECRET    = "myfancysecret"
     REDIS_HOST    = var.redis_long_name
     REDIS_PORT    = var.redis_port
     REDIS_CHANNEL = "log_channel"
