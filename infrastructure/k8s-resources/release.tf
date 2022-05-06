@@ -111,60 +111,13 @@ resource "helm_release" "users_api" {
 }
 
 resource "helm_release" "todos_api" {
-  depends_on = [helm_release.zipkin]
-  name       = var.todos_api_release_name
-  namespace  = var.namespace_name
-  chart      = "${path.module}/todos-api"
-  values = [
-    templatefile("${path.module}/todos-api/values.tpl.yaml",
-      {
-        todos_api_replicaCount  = var.todos_api_replicaCount
-        todos_api_restartPolicy = var.todos_api_restartPolicy
-        todos_api_env_vars      = indent(2, yamlencode(local.todos_api_env_vars))
-        todos_api_registry      = var.todos_api_registry
-        todos_api_pull_policy   = var.todos_api_pull_policy
-        todos_api_short_name    = var.todos_api_short_name
-        todos_api_long_name     = var.todos_api_long_name
-        todos_api_port          = var.todos_api_port
-  })]
+  ##
 }
 
 resource "helm_release" "auth_api" {
-  depends_on = [helm_release.zipkin, helm_release.users_api]
-  name       = var.auth_api_release_name
-  namespace  = var.namespace_name
-  chart      = "${path.module}/auth-api"
-  values = [
-    templatefile("${path.module}/auth-api/values.tpl.yaml",
-      {
-        auth_api_replicaCount  = var.auth_api_replicaCount
-        auth_api_restartPolicy = var.auth_api_restartPolicy
-        auth_api_env_vars      = indent(2, yamlencode(local.auth_api_env_vars))
-        auth_api_registry      = var.auth_api_registry
-        auth_api_pull_policy   = var.auth_api_pull_policy
-        auth_api_short_name    = var.auth_api_short_name
-        auth_api_long_name     = var.auth_api_long_name
-        auth_api_port          = var.auth_api_port
-  })]
+  ##
 }
 
 resource "helm_release" "frontend" {
-  depends_on = [helm_release.zipkin, helm_release.users_api]
-  name       = var.frontend_release_name
-  namespace  = var.namespace_name
-  chart      = "${path.module}/frontend"
-  values = [
-    templatefile("${path.module}/frontend/values.tpl.yaml",
-      {
-        frontend_replicaCount   = var.frontend_replicaCount
-        frontend_restartPolicy  = var.frontend_restartPolicy
-        frontend_env_vars       = indent(2, yamlencode(local.frontend_env_vars))
-        frontend_registry       = var.frontend_registry
-        frontend_pull_policy    = var.frontend_pull_policy
-        frontend_short_name     = var.frontend_short_name
-        frontend_long_name      = var.frontend_long_name
-        frontend_port           = var.frontend_port
-        frontend_enable_ingress = var.frontend_enable_ingress
-        frontend_ingress_class  = var.frontend_ingress_class
-  })]
+  ##
 }
