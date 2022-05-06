@@ -1,15 +1,14 @@
 terraform {
   required_version = "1.1.9"
-  backend "azurerm" {
-    resource_group_name  = "state-rg"
-    storage_account_name = "col40tfstates"
-    container_name       = "tfstate"
-    key                  = "colombia40.tfstate"
+  backend "s3" {
+    bucket         = "col40tfstate"
+    key            = "colombia40.tfstate"
+    region         = "us-east-2"
   }
   required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "3.4.0"
+    aws = {
+      source = "hashicorp/aws"
+      version = "4.13.0"
     }
     helm = {
       source  = "hashicorp/helm"
@@ -18,19 +17,18 @@ terraform {
   }
 }
 
-provider "azurerm" {
-  features {
-
-  }
+provider "aws" {
+  
 }
 
 provider "helm" {
   kubernetes {
-    host                   = azurerm_kubernetes_cluster.aks.kube_config.0.host
-    username               = azurerm_kubernetes_cluster.aks.kube_config.0.username
-    password               = azurerm_kubernetes_cluster.aks.kube_config.0.password
-    client_certificate     = base64decode(azurerm_kubernetes_cluster.aks.kube_config.0.client_certificate)
-    client_key             = base64decode(azurerm_kubernetes_cluster.aks.kube_config.0.client_key)
-    cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.aks.kube_config.0.cluster_ca_certificate)
+    host                   = module.eks.cluster_endpoint
+    cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
+    token                  = data.aws_eks_cluster_auth.eks.token
   }
+}
+
+data "aws_eks_cluster_auth" "eks" {
+  name = module.eks.cluster_id
 }
