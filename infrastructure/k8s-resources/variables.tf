@@ -15,6 +15,7 @@ variable "aks_rg" {
 variable "namespace_name" {
   type        = string
   description = "Your K8S namespace name"
+  default = "demo"
 }
 
 variable "ingress_class" {
