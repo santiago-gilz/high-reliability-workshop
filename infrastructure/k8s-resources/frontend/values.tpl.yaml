@@ -25,8 +25,7 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: ${frontend_ingress_class}
   hosts:
-    - host: ${frontend_long_name}.local
-      paths: ["/"]
+    - paths: ["/"]
 
   tls: []
   #  - secretName: chart-example-tls
