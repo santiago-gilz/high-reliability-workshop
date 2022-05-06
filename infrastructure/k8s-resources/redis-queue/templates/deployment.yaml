@@ -29,15 +29,14 @@ spec:
           - { name: "{{$key}}", value: "{{$value}}" }
           {{end}}
           {{- end }}
-          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           livenessProbe:
             exec:
-            command: ["redis-cli", "ping"]
+              command: ["redis-cli", "ping"]
           readinessProbe:
             exec:
-            command: ["redis-cli", "ping"]
+              command: ["redis-cli", "ping"]
       restartPolicy: {{ .Values.restartPolicy }}
