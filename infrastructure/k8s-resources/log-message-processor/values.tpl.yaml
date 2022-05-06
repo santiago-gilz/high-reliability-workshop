@@ -6,11 +6,8 @@ replicaCount: ${log_msg_proc_replicaCount}
 restartPolicy: ${log_msg_proc_restartPolicy}
 
 env:
-  REDIS_HOST: ${REDIS_HOST}
-  REDIS_PORT: ${REDIS_PORT}
-  REDIS_CHANNEL: log_channel
-  ZIPKIN_URL: ${ZIPKIN_URL}
-
+  ${log_msg_proc_env_vars}
+ 
 image:
   repository: ${log_msg_proc_registry}
   tag: latest

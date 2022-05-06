@@ -147,3 +147,190 @@ variable "log_msg_proc_long_name" {
   type    = string
   default = "workshop-log-message-processor"
 }
+
+###
+# Users api variables
+###
+
+variable "users_api_release_name" {
+  type    = string
+  default = "users-api"
+}
+
+variable "users_api_replicaCount" {
+  type    = number
+  default = 1
+}
+
+variable "users_api_restartPolicy" {
+  type    = string
+  default = "Always"
+}
+
+variable "users_api_registry" {
+  type    = string
+  default = "sgilz/col40-users-api"
+}
+
+variable "users_api_pull_policy" {
+  type    = string
+  default = "IfNotPresent"
+}
+
+variable "users_api_short_name" {
+  type    = string
+  default = "users-api"
+}
+
+variable "users_api_long_name" {
+  type    = string
+  default = "workshop-users-api"
+}
+
+variable "users_api_port" {
+  type    = string
+  default = "8083"
+}
+
+###
+# todo api variables
+###
+
+variable "todos_api_release_name" {
+  type    = string
+  default = "todos-api"
+}
+
+variable "todos_api_replicaCount" {
+  type    = number
+  default = 1
+}
+
+variable "todos_api_restartPolicy" {
+  type    = string
+  default = "Always"
+}
+
+variable "todos_api_registry" {
+  type    = string
+  default = "sgilz/col40-todos-api"
+}
+
+variable "todos_api_pull_policy" {
+  type    = string
+  default = "IfNotPresent"
+}
+
+variable "todos_api_short_name" {
+  type    = string
+  default = "todos-api"
+}
+
+variable "todos_api_long_name" {
+  type    = string
+  default = "workshop-todos-api"
+}
+
+variable "todos_api_port" {
+  type    = string
+  default = "8082"
+}
+
+
+###
+# auth api variables
+###
+
+variable "auth_api_release_name" {
+  type    = string
+  default = "auth-api"
+}
+
+variable "auth_api_replicaCount" {
+  type    = number
+  default = 1
+}
+
+variable "auth_api_restartPolicy" {
+  type    = string
+  default = "Always"
+}
+
+variable "auth_api_registry" {
+  type    = string
+  default = "sgilz/col40-auth-api"
+}
+
+variable "auth_api_pull_policy" {
+  type    = string
+  default = "IfNotPresent"
+}
+
+variable "auth_api_short_name" {
+  type    = string
+  default = "auth-api"
+}
+
+variable "auth_api_long_name" {
+  type    = string
+  default = "workshop-auth-api"
+}
+
+variable "auth_api_port" {
+  type    = string
+  default = "8081"
+}
+
+###
+# frontend variables
+###
+
+variable "frontend_release_name" {
+  type    = string
+  default = "frontend"
+}
+
+variable "frontend_replicaCount" {
+  type    = number
+  default = 1
+}
+
+variable "frontend_restartPolicy" {
+  type    = string
+  default = "Always"
+}
+
+variable "frontend_registry" {
+  type    = string
+  default = "sgilz/col40-frontend"
+}
+
+variable "frontend_pull_policy" {
+  type    = string
+  default = "IfNotPresent"
+}
+
+variable "frontend_short_name" {
+  type    = string
+  default = "frontend"
+}
+
+variable "frontend_long_name" {
+  type    = string
+  default = "workshop-frontend"
+}
+
+variable "frontend_port" {
+  type    = string
+  default = "8080"
+}
+
+variable "frontend_enable_ingress" {
+  type    = bool
+  default = true
+}
+
+variable "frontend_ingress_class" {
+  type    = string
+  default = "nginx"
+}
