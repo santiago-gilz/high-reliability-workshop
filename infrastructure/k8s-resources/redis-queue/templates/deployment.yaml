@@ -26,8 +26,8 @@ spec:
           {{- if .Values.env }}
           - env:
           {{- range $key, $value := .Values.env }}
-            - name: {{ $key | quote }}
-              value: {{ $value | quote }}
+          - { name: "{{$key}}", value: "{{$value}}" }
+          {{end}}
           {{- end }}
           {{- end }}
           ports:
