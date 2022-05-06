@@ -24,21 +24,21 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if .Values.env }}
-          - env:
+          env:
           {{- range $key, $value := .Values.env }}
           - { name: "{{$key}}", value: "{{$value}}" }
           {{end}}
-          {{- end }}
+          {{end}}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /users
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /users
-              port: http
+          # livenessProbe:
+          #   httpGet:
+          #     path: /users
+          #     port: http
+          # readinessProbe:
+          #   httpGet:
+          #     path: /users
+          #     port: http
       restartPolicy: {{ .Values.restartPolicy }}

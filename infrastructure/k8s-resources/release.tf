@@ -83,7 +83,7 @@ resource "helm_release" "log_msg_proc" {
       {
         log_msg_proc_replicaCount  = var.log_msg_proc_replicaCount
         log_msg_proc_restartPolicy = var.log_msg_proc_restartPolicy
-        log_msg_proc_env_vars      = indent(2, yamlencode(local.redis_env_vars))
+        log_msg_proc_env_vars      = indent(2, yamlencode(local.log_msg_proc_env_vars))
         log_msg_proc_registry      = var.log_msg_proc_registry
         log_msg_proc_pull_policy   = var.log_msg_proc_pull_policy
         log_msg_proc_short_name    = var.log_msg_proc_short_name
