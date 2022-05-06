@@ -29,7 +29,6 @@ spec:
           - { name: "{{$key}}", value: "{{$value}}" }
           {{end}}
           {{- end }}
-          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
